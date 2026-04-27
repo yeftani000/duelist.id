@@ -1,4 +1,5 @@
-import "./globals.css"; // MUST BE AT THE TOP
+import "./globals.css"; // MUST BE LINE 1
+import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
