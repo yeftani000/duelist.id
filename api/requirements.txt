@@ -1,5 +1,3 @@
 fastapi
-uvicorn
-playwright
+playwright-core
 playwright-stealth
-python-dotenv
