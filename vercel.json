@@ -1,18 +1,15 @@
 {
   "version": 2,
-  "env": {
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
-  },
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/search",
       "destination": "/api/index.py"
     }
   ],
   "functions": {
     "api/index.py": {
-      "memory": 1024,
-      "maxDuration": 30
+      "runtime": "python3.12",
+      "memory": 1024
     }
   }
 }
