@@ -1,5 +1,8 @@
 {
   "version": 2,
+  "env": {
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -8,8 +11,8 @@
   ],
   "functions": {
     "api/index.py": {
-      "maxDuration": 30,
-      "memory": 1024
+      "memory": 1024,
+      "maxDuration": 30
     }
   }
 }
