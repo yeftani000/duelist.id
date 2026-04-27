@@ -18,7 +18,6 @@
   "lucide-react": "latest",
   "clsx": "latest",
   "tailwind-merge": "latest"
-}
   },
   "devDependencies": {
     "@types/node": "20.x",
