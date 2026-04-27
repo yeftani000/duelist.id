@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-inter);
+/* If this doesn't turn the site black, the CSS isn't loading at all */
+:root {
+  background: #020202 !important;
+  color: white !important;
 }
 
-/* Force base styles to ensure the dark theme hits immediately */
-@layer base {
-  body {
-    background-color: #020202 !important;
-    color: white !important;
-  }
+body {
+  background-color: #020202 !important;
+  color: white !important;
+  min-height: 100vh;
 }
