@@ -46,4 +46,74 @@ export default function Page() {
         {/* Search Bar */}
         <div className="relative max-w-2xl mx-auto mb-20 group">
           <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000" />
-          <div className="relative flex items-center bg-white/5 backdrop-blur-2xl border border-white/10 p-2 rounded-2
+          <div className="relative flex items-center bg-white/5 backdrop-blur-2xl border border-white/10 p-2 rounded-2xl">
+            <input 
+              className="flex-1 bg-transparent p-4 text-xl outline-none placeholder:text-white/20"
+              placeholder="Card name (e.g. Ash Blossom)..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && doSearch()}
+            />
+            <button 
+              onClick={doSearch}
+              disabled={loading}
+              className="bg-white text-black h-14 w-14 md:w-32 rounded-xl flex items-center justify-center font-bold hover:scale-[0.98] active:scale-95 transition-all disabled:opacity-50"
+            >
+              {loading ? (
+                <div className="animate-spin h-5 w-5 border-2 border-black border-t-transparent rounded-full" />
+              ) : (
+                <>
+                  <Search size={20} className="md:mr-2" />
+                  <span className="hidden md:inline">SEARCH</span>
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Results Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {results.map((card, i) => (
+            <div 
+              key={i} 
+              className="group relative bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-[2.5rem] hover:bg-white/10 transition-all hover:-translate-y-1"
+            >
+              <div className="flex justify-between items-start mb-6">
+                <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[10px] font-bold tracking-widest text-blue-400 uppercase">
+                  {card.source}
+                </span>
+                <ExternalLink size={16} className="text-white/20 group-hover:text-white/50 transition-colors" />
+              </div>
+              
+              <h3 className="text-xl font-bold mb-8 leading-tight line-clamp-2 min-h-[3.5rem]">
+                {card.name}
+              </h3>
+              
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-[10px] text-white/40 font-bold uppercase tracking-wider mb-1">Market Price</p>
+                  <p className="text-2xl font-black tracking-tight">{card.price}</p>
+                </div>
+                <a 
+                  href={card.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-white text-black p-4 rounded-2xl hover:scale-110 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                >
+                  <ExternalLink size={18} />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Empty State */}
+        {!loading && hasSearched && results.length === 0 && (
+          <div className="text-center py-20 opacity-40 italic">
+            No cards found. Try a different card name.
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
