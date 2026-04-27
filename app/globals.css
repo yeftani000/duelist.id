@@ -1,15 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* This creates the 'liquid glass' effect defined in the image */
-  --color-glass: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-neon-blue: cyan;
-  --color-neon-purple: #9d00ff;
+  --font-sans: var(--font-inter);
 }
 
-body {
-  background-color: #020202;
-  color: white;
-  @apply antialiased;
+/* Force base styles to ensure the dark theme hits immediately */
+@layer base {
+  body {
+    background-color: #020202 !important;
+    color: white !important;
+  }
 }
