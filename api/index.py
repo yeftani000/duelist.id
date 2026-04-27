@@ -4,6 +4,7 @@ import os
 import re
 
 app = FastAPI()
+# ... rest of your code
 
 def parse_facebook_post(text):
     # NLP logic to extract price and action from messy FB posts
