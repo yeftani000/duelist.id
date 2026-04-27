@@ -1,12 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Remove the 'eslint' block entirely if it was here
   typescript: {
-    // This bypasses the CSS type error and allows the build to finish
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  }
 };
 
 export default nextConfig;
