@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
-/* If this doesn't turn the site black, the CSS isn't loading at all */
-:root {
-  background: #020202 !important;
-  color: white !important;
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+  }
+
+  body {
+    background-color: #020202 !important;
+    color: white !important;
+    font-family: sans-serif;
+  }
 }
 
-body {
-  background-color: #020202 !important;
-  color: white !important;
-  min-height: 100vh;
+@theme {
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
 }
