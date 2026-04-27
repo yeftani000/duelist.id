@@ -18,5 +18,12 @@
     "lucide-react": "latest",
     "clsx": "latest",
     "tailwind-merge": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "baseline-browser-mapping": "latest"
   }
 }
