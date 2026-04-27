@@ -1,14 +1,13 @@
 {
   "version": 2,
-  "env": {
-    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1"
-  },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/server/index.py" }
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index.py"
+    }
   ],
   "functions": {
-    "server/index.py": {
-      "memory": 1024,
+    "api/index.py": {
       "maxDuration": 30
     }
   }
