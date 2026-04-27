@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI
 from playwright.async_api import async_playwright
 import os
 import re
@@ -27,7 +27,6 @@ def parse_facebook_post(text):
     return action, price
 
 @app.get("/api/search")
-@app.get("/api/search")
 async def search(card: str):
     token = os.getenv('BROWSERLESS_TOKEN')
     if not token:
@@ -43,3 +42,4 @@ async def search(card: str):
             # ... rest of your code
         except Exception as e:
             return {"error": str(e)} # This helps you see the REAL error in the UI
+return {"data": []}
