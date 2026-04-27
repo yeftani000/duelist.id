@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* This is the base theme for your Duelist ID aggregator */
+@layer base {
+  body {
+    @apply bg-[#020202] text-white antialiased;
+  }
+}
+
+/* Custom 'Liquid Glass' effect */
+.glass-card {
+  @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] transition-all hover:bg-white/10;
+}
