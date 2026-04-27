@@ -10,6 +10,7 @@ export default function DuelistApp() {
     if (e.key !== 'Enter') return;
     setLoading(true);
     try {
+      // Do NOT include 'http://localhost:8000'
       const res = await fetch(`/api/search?card=${query}`);
       const json = await res.json();
       setResults(json.data);
