@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "next": "15.0.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "lucide-react": "^0.344.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^2.2.0"
+    "react": "19.0.0-rc-65a56d0e-20241020",
+    "react-dom": "19.0.0-rc-65a56d0e-20241020",
+    "lucide-react": "latest",
+    "clsx": "latest",
+    "tailwind-merge": "latest"
   },
   "devDependencies": {
     "typescript": "^5",
@@ -22,6 +22,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "latest"
   }
 }
