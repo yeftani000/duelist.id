@@ -1,83 +1,52 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-export default function DuelistApp() {
+export default function Page() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async (e) => {
-    if (e.key !== 'Enter') return;
+  const doSearch = async () => {
     setLoading(true);
     try {
-      // Do NOT include 'http://localhost:8000'
-      const res = await fetch(`/api/search?card=${query}`);
+      const res = await fetch(`/api/search?card=${encodeURIComponent(query)}`);
       const json = await res.json();
-      setResults(json.data);
-    } catch (err) {
-      console.error("Search failed", err);
-    } finally {
-      setLoading(false);
-    }
+      setResults(json.data || []);
+    } catch (e) { console.error(e); }
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-[#030303] text-white font-sans selection:bg-yellow-500/30 overflow-x-hidden">
-      {/* Background Orbs */}
-      <div className="fixed top-0 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-0 -right-20 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-      <main className="max-w-6xl mx-auto px-6 py-20 relative z-10">
-        <div className="text-center mb-16">
-          <h1 className="text-6xl font-black italic tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
-            DUELIST<span className="text-blue-500">.ID</span>
-          </h1>
-          <p className="text-white/40 uppercase tracking-[0.3em] text-xs font-bold">Indonesian Card Aggregator</p>
+    <div className="min-h-screen bg-[#020202] text-white p-8 overflow-hidden relative">
+      <div className="fixed inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20 pointer-events-none" />
+      
+      <div className="max-w-4xl mx-auto relative z-10">
+        <h1 className="text-5xl font-black italic text-center mb-12 tracking-tighter">DUELIST<span className="text-blue-500">.ID</span></h1>
+        
+        <div className="relative mb-12">
+          <input 
+            className="w-full bg-white/5 border border-white/10 backdrop-blur-xl p-5 rounded-2xl text-xl outline-none focus:border-blue-500/50 transition-all"
+            placeholder="Search Card (e.g. Blue-Eyes)..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && doSearch()}
+          />
+          {loading && <div className="absolute right-5 top-6 animate-spin h-6 w-6 border-2 border-blue-500 border-t-transparent rounded-full" />}
         </div>
 
-        {/* Search Bar (Glass) */}
-        <div className="max-w-2xl mx-auto mb-20">
-          <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <input 
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={handleSearch}
-              placeholder="Enter card name..."
-              className="relative w-full bg-black/40 backdrop-blur-2xl border border-white/10 px-8 py-5 rounded-full text-xl focus:outline-none focus:border-white/30 transition-all"
-            />
-            {loading && <div className="absolute right-6 top-5 animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>}
-          </div>
-        </div>
-
-        {/* Results (Liquid Glass Grid) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {results.map((card) => (
-            <div key={card.id} className="group relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-[2rem] border border-white/10 backdrop-blur-3xl transition-all group-hover:scale-[1.02] group-hover:bg-white/15 shadow-2xl"></div>
-              <div className="relative p-8 h-full flex flex-col justify-between">
-                <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-black tracking-widest bg-white/10 text-white/60 group-hover:bg-blue-500/20 group-hover:text-blue-300 transition-colors">
-                      {card.source}
-                    </span>
-                  </div>
-                  <h2 className="text-2xl font-bold leading-tight group-hover:text-blue-200 transition-colors">{card.name}</h2>
-                </div>
-                <div className="mt-12 pt-6 border-t border-white/5 flex justify-between items-end">
-                  <div>
-                    <p className="text-[10px] uppercase text-white/30 font-bold tracking-widest">Market Price</p>
-                    <p className="text-3xl font-black">{card.price}</p>
-                  </div>
-                  <a href={card.url} target="_blank" className="h-12 w-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                  </a>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {results.map((card: any, i) => (
+            <div key={i} className="bg-white/5 backdrop-blur-2xl border border-white/10 p-6 rounded-[2.5rem] hover:bg-white/10 transition-all">
+              <span className="text-[10px] font-bold tracking-[0.2em] text-blue-400 uppercase mb-2 block">{card.source}</span>
+              <h3 className="text-xl font-bold mb-4">{card.name}</h3>
+              <div className="flex justify-between items-end">
+                <p className="text-2xl font-black">{card.price}</p>
+                <a href={card.url} target="_blank" className="bg-white text-black px-4 py-2 rounded-full text-xs font-bold hover:scale-110 transition-transform">VIEW</a>
               </div>
             </div>
           ))}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
