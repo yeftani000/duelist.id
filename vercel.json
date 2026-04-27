@@ -2,12 +2,12 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/server/index.py"
+      "source": "/api/(.*)",
+      "destination": "/api/index.py"
     }
   ],
   "functions": {
-    "server/index.py": {
+    "api/index.py": {
       "maxDuration": 30,
       "memory": 1024
     }
