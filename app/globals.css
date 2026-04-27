@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 @theme {
+  /* This creates the 'liquid glass' effect defined in the image */
   --color-glass: rgba(255, 255, 255, 0.05);
   --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-neon-blue: cyan;
+  --color-neon-purple: #9d00ff;
 }
 
 body {
-  background: #020202;
+  background-color: #020202;
   color: white;
+  @apply antialiased;
 }
