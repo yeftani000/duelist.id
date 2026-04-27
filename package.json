@@ -17,6 +17,7 @@
     "tailwind-merge": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "latest",
     "typescript": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
