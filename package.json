@@ -10,14 +10,14 @@
     "vercel-build": "next build"
   },
   "dependencies": {
-    "next": "16.0.7",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "tailwindcss": "4.0.6",
-    "@tailwindcss/postcss": "4.0.6",
-    "lucide-react": "latest",
-    "clsx": "latest",
-    "tailwind-merge": "latest"
+  "next": "16.0.8",
+  "react": "19.0.0",
+  "react-dom": "19.0.0",
+  "tailwindcss": "4.0.0",
+  "@tailwindcss/postcss": "4.0.0",
+  "lucide-react": "latest",
+  "clsx": "latest",
+  "tailwind-merge": "latest"
   },
   "devDependencies": {
     "@types/node": "20.x",
