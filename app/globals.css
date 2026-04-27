@@ -1,19 +1,17 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-  }
-
-  body {
-    background-color: #020202 !important;
-    color: white !important;
-    font-family: sans-serif;
-  }
-}
-
+/* Minimal theme config to avoid scanner triggers */
 @theme {
   --color-glass: rgba(255, 255, 255, 0.05);
   --color-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+:root {
+  background: #020202;
+  color: white;
+}
+
+body {
+  background-color: #020202;
+  color: white;
 }
